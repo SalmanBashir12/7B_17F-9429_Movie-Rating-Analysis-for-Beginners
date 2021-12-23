@@ -15,8 +15,45 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+loading libraries
+```{r}
+install.packages('scales')
+install.packages('gtrendsR')
+install.packages('ggplot2')
+install.packages('readr')
+library(scales)
+library(gtrendsR)
+library(ggplot2)
+
+```
+#Loading dataset
+```{r}
+data_Movies <- read.csv("C:\\Users\\Hp\\Documents\\R\\7B_17F-9429_Movie-Rating-Analysis-for-Beginners\\movies.csv")
+head(data_Movies)
+data_Ratings <- read.csv("C:\\Users\\Hp\\Documents\\R\\7B_17F-9429_Movie-Rating-Analysis-for-Beginners\\ratings.csv")
+head(data_Ratings)
+
+```
+selecting colums from movies
+
+```{r}
+data_Movies=na.omit(data_Movies)
+data_Movies=na.omit(data_Ratings)
+head(data_Ratings)
+colnames(data_Movies) <-c("Id","Title","Genre") # changing the column names as suitable
+head(data_Movies)
+tail(data_Movies)
+colnames(data_Ratings) <- c("User","Id","Ratings","Timestamp")
+head(data_Ratings)
+```
+Now I am going to merge these two datasets into one, these two datasets have a common column as ID, which contains movie ID
+```{r}
+total <- merge(data_Movies,data_Ratings,by="Id")
+total
+```
+As 10 is the highest rating a viewer can give, let’s take a look at the top 10 movies that got 10 ratings by viewers:
+
+```{r}
 ```
 
 ## Including Plots
