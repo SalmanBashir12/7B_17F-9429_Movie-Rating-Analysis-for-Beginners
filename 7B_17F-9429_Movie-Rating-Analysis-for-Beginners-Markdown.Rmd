@@ -54,10 +54,21 @@ total
 As 10 is the highest rating a viewer can give, let’s take a look at the top 10 movies that got 10 ratings by viewers:
 
 ```{r}
+
 ```
 
 ## Including Plots
 
+```{r}
+
+plots <-ggplot(data = data_Ratings,aes(x = Genre,y=Rating,color = Genre))
+plots + geom_point() + geom_smooth(fill = NA) + ggtitle("Scatter plot for Genre  V/S  rating")+ 
+  xlab("Critic Ratings")+
+  ylab("Audience Ratings")+
+  theme(axis.title.x = element_text(color="red",size = 35),
+        axis.title.y = element_text(color="purple",size = 35),
+        legend.title = element_text(color="purple",size = 15))
+```
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
